@@ -1,73 +1,70 @@
-# web-mirror-clean
+# Web Mirror & Cleaner Application
 
-<div align="center">
+Aplikasi Flask untuk mirroring dan membersihkan halaman web dengan menghapus iklan, tracker, dan konten yang tidak diinginkan.
 
-![Project Status](https://img.shields.io/badge/Status-Active-brightgreen)
-![Upload Date](https://img.shields.io/badge/Upload%20Date-282025-06-28062025-06-282025-blue)
-![Auto Generated](https://img.shields.io/badge/Generated-Telegram%20Bot-orange)
+## Fitur Utama
 
-</div>
+- **Mirroring Halaman Web**: Input URL dan dapatkan versi bersih dari halaman tersebut
+- **Pembersihan Otomatis**: Menghapus iklan, banner, pop-up, dan iframe iklan
+- **Filter Script**: Memblokir script dari domain iklan seperti Google Ads, Taboola, Outbrain
+- **Tampilan Modern**: UI responsif menggunakan Bootstrap 5
+- **Dark/Light Mode**: Toggle tema dengan penyimpanan preferensi
+- **Reading Options**: Kontrol ukuran font dan jarak baris
+- **Focus Mode**: Mode baca tanpa gangguan
+- **Print Support**: Fungsi cetak yang dioptimalkan
 
-## 📋 Deskripsi
+## Instalasi
 
-Proyek ini diunggah secara otomatis melalui Telegram Bot.
-
-## 🚀 Tentang Project Ini
-
-Project ini telah diunggah secara otomatis menggunakan sistem otomatisasi Telegram Bot yang dirancang khusus untuk mempermudah proses deployment ke GitHub.
-
-### ✨ Fitur Otomatisasi
-- 🤖 Upload otomatis via Telegram Bot
-- 📦 Ekstraksi file ZIP otomatis
-- 📄 Generasi README.md profesional
-- 🔄 Sinkronisasi langsung ke GitHub
-
-## 📅 Informasi Upload
-
-| Detail | Informasi |
-|--------|-----------|
-| **Tanggal Upload** | 28 June 2025 |
-| **Waktu Upload** | 01:13:11 |
-| **Method** | Telegram Bot Automation |
-| **Status** | ✅ Berhasil |
-
-## 🛠️ Teknologi
-
-Project ini menggunakan teknologi modern untuk otomatisasi:
-
-- **Telegram Bot API** - Interface upload
-- **GitHub API** - Repository management
-- **Python** - Backend automation
-- **ZIP Processing** - File extraction
-
-## 📂 Struktur Project
-
-```
-web-mirror-clean/
-├── 📄 README.md
-└── 🗂️ [Project Files]
+1. Install dependensi Python:
+```bash
+pip install flask beautifulsoup4 requests gunicorn
 ```
 
-## 🤝 Kontribusi
+2. Jalankan aplikasi:
+```bash
+python app.py
+```
 
-Project ini di-upload menggunakan sistem otomatis. Untuk berkontribusi:
+3. Buka browser dan akses: `http://localhost:5000`
 
-1. Fork repository ini
-2. Buat branch feature baru
-3. Commit perubahan Anda
-4. Push ke branch
-5. Buat Pull Request
+## Struktur File
 
-## 📞 Kontak
+- `app.py` - Aplikasi Flask utama
+- `content_cleaner.py` - Engine pembersihan konten
+- `main.py` - Entry point untuk production
+- `templates/` - Template HTML dengan Jinja2
+- `static/` - CSS dan JavaScript
+- `pyproject.toml` - Konfigurasi dependensi
 
-Project ini dikelola melalui sistem otomatisasi Telegram Bot.
+## Cara Penggunaan
 
----
+1. Masukkan URL website di form input
+2. Klik "Clean & Mirror Page"
+3. Tunggu proses pembersihan selesai
+4. Nikmati konten bersih tanpa iklan
 
-<div align="center">
+## Teknologi
 
-**Dibuat dengan menggunakan Telegram Bot Automation**
+- **Backend**: Flask (Python)
+- **Frontend**: Bootstrap 5, Vanilla JavaScript
+- **Parsing**: BeautifulSoup4
+- **HTTP Client**: Requests
+- **Server**: Gunicorn (Production)
 
-*Upload Date: 282025-06-28062025-06-282025*
+## Keamanan
 
-</div>
+- Validasi URL input
+- Timeout untuk request HTTP
+- Limit redirect untuk mencegah loop
+- Sanitasi konten HTML
+
+## Deployment
+
+Untuk production, gunakan Gunicorn:
+```bash
+gunicorn --bind 0.0.0.0:5000 --reuse-port --reload main:app
+```
+
+## Lisensi
+
+Open source - dapat digunakan dan dimodifikasi sesuai kebutuhan.
