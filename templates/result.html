@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - Web Mirror{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Sidebar with Controls -->
+    <div class="col-lg-3 mb-4">
+        <div class="sticky-top" style="top: 1rem;">
+            <!-- Back Button -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-primary w-100">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        Mirror Another Page
+                    </a>
+                </div>
+            </div>
+
+            <!-- Page Info -->
+            <div class="card mb-3">
+                <div class="card-header bg-transparent">
+                    <h6 class="mb-0">
+                        <i class="fas fa-info-circle me-2"></i>Page Info
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-muted">Original URL:</label>
+                        <div class="small">
+                            <a href="{{ original_url }}" target="_blank" class="text-decoration-none">
+                                {{ original_url[:50] }}{% if original_url|length > 50 %}...{% endif %}
+                                <i class="fas fa-external-link-alt ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% if final_url != original_url %}
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-muted">Final URL:</label>
+                        <div class="small">
+                            <a href="{{ final_url }}" target="_blank" class="text-decoration-none">
+                                {{ final_url[:50] }}{% if final_url|length > 50 %}...{% endif %}
+                                <i class="fas fa-external-link-alt ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div>
+                        <label class="form-label small fw-semibold text-muted">Status:</label>
+                        <div class="small">
+                            <span class="badge bg-success">
+                                <i class="fas fa-check me-1"></i>Cleaned
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reading Options -->
+            <div class="card">
+                <div class="card-header bg-transparent">
+                    <h6 class="mb-0">
+                        <i class="fas fa-cog me-2"></i>Reading Options
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="fontSize" class="form-label small">Font Size</label>
+                        <select class="form-select form-select-sm" id="fontSize">
+                            <option value="14">Small</option>
+                            <option value="16" selected>Normal</option>
+                            <option value="18">Large</option>
+                            <option value="20">Extra Large</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lineHeight" class="form-label small">Line Spacing</label>
+                        <select class="form-select form-select-sm" id="lineHeight">
+                            <option value="1.4">Compact</option>
+                            <option value="1.6" selected>Normal</option>
+                            <option value="1.8">Comfortable</option>
+                            <option value="2.0">Spacious</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-secondary btn-sm w-100" id="focusMode">
+                            <i class="fas fa-expand me-2"></i>Focus Mode
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="col-lg-9">
+        <div class="card shadow-sm">
+            <div class="card-header bg-white border-bottom">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="mb-0">
+                        <i class="fas fa-file-alt me-2 text-primary"></i>
+                        {{ title }}
+                    </h5>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-secondary btn-sm" id="printBtn">
+                            <i class="fas fa-print me-1"></i>Print
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" id="copyLinkBtn">
+                            <i class="fas fa-link me-1"></i>Copy Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-4" id="contentArea">
+                <div class="content-wrapper" id="mirroredContent">
+                    {{ content|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Focus Mode Overlay -->
+<div class="focus-overlay d-none" id="focusOverlay">
+    <div class="focus-content">
+        <div class="focus-header">
+            <h5 class="mb-0">{{ title }}</h5>
+            <button class="btn btn-outline-light btn-sm" id="exitFocusMode">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="focus-body" id="focusContent">
+            {{ content|safe }}
+        </div>
+    </div>
+</div>
+{% endblock %}
