@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-6">
+        <!-- Header Section -->
+        <div class="text-center mb-5">
+            <div class="mb-4">
+                <i class="fas fa-magic fa-3x text-primary mb-3"></i>
+                <h1 class="display-5 fw-bold">Web Page Mirror</h1>
+                <p class="lead text-muted">Clean and mirror any webpage by removing ads, trackers, and unwanted content</p>
+            </div>
+        </div>
+
+        <!-- URL Input Form -->
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <form method="POST" action="{{ url_for('mirror_page') }}" id="mirrorForm">
+                    <div class="mb-4">
+                        <label for="url" class="form-label fw-semibold">
+                            <i class="fas fa-link me-2"></i>Enter Website URL
+                        </label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text">
+                                <i class="fas fa-globe"></i>
+                            </span>
+                            <input type="url" 
+                                   class="form-control" 
+                                   id="url" 
+                                   name="url" 
+                                   placeholder="https://example.com or example.com"
+                                   required
+                                   autocomplete="url">
+                        </div>
+                        <div class="form-text">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Enter any website URL. We'll clean it up and remove ads automatically.
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg" id="mirrorBtn">
+                            <span class="btn-text">
+                                <i class="fas fa-magic me-2"></i>Clean & Mirror Page
+                            </span>
+                            <span class="btn-loading d-none">
+                                <div class="spinner-border spinner-border-sm me-2" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                Processing...
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="feature-icon bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+                        <i class="fas fa-ad text-primary fa-lg"></i>
+                    </div>
+                    <h5>Remove Ads</h5>
+                    <p class="text-muted small">Automatically removes advertisements, banners, and promotional content</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="feature-icon bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+                        <i class="fas fa-shield-alt text-success fa-lg"></i>
+                    </div>
+                    <h5>Block Trackers</h5>
+                    <p class="text-muted small">Removes tracking scripts and privacy-invasive elements</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="feature-icon bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+                        <i class="fas fa-eye text-info fa-lg"></i>
+                    </div>
+                    <h5>Clean Reading</h5>
+                    <p class="text-muted small">Focus on content with a clean, distraction-free reading experience</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Features -->
+        <div class="card border-0 bg-light mt-4">
+            <div class="card-body p-4">
+                <h6 class="card-title mb-3">
+                    <i class="fas fa-lightbulb me-2"></i>How it works
+                </h6>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        Fetches the original webpage content
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        Removes ads, popups, and promotional elements
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        Blocks tracking scripts and analytics
+                    </li>
+                    <li class="mb-0">
+                        <i class="fas fa-check text-success me-2"></i>
+                        Presents clean, readable content
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
